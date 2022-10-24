@@ -54,21 +54,23 @@ function setGridLines() {
     let squares = document.querySelectorAll(".square")
     for (let i = 0; i < squares.length; i++) {
         console.log(squares)
-        if (currentShowGridLines)
-            squares[i].style.border = "0.1rem solid black"
-        else
-            squares[i].style.border = "none"
+        if (currentShowGridLines) {
+            squares[i].style.borderTop = "0.1rem solid black"
+            squares[i].style.borderRight = "0.1rem solid black"
+        }
+        else {
+            squares[i].style.borderTop = "none"
+            squares[i].style.borderRight = "none"
+        }
     }
-    if (!currentShowGridLines)
-    {
-        for (let i = 0; i < currentColumns; i++) {
-            squares[i].style.borderTop = "0.1rem solid black";
-            squares[squares.length - 1 - i].style.borderBottom = "0.1rem solid black";
-        }
-        for (let i = 0; i < currentRows; i++) {
-            squares[i * currentColumns].style.borderLeft = "0.1rem solid black";
-            squares[(i + 1) * currentColumns - 1].style.borderRight = "0.1rem solid black";
-        }
+
+    for (let i = 0; i < currentColumns; i++) {
+        squares[i].style.borderTop = "0.1rem solid black";
+        squares[squares.length - 1 - i].style.borderBottom = "0.1rem solid black";
+    }
+    for (let i = 0; i < currentRows; i++) {
+        squares[i * currentColumns].style.borderLeft = "0.1rem solid black";
+        squares[(i + 1) * currentColumns - 1].style.borderRight = "0.1rem solid black";
     }
 }
 
