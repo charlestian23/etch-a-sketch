@@ -1,0 +1,10 @@
+.header {
+    white-space: nowrap;
+    text-align: center;
+}
+
+.title, .material-icons {
+    font-size: 80px;
+    font-family: Fredoka One;
+    display: inline-block;
+}
