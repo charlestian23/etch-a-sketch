@@ -2,7 +2,7 @@ const DEFAULT_PEN_COLOR = '#333333'
 const DEFAULT_BACKGROUND_COLOR = '#000000'
 const DEFAULT_MODE = 'color'
 const DEFAULT_SHOW_GRID_LINES = false
-const DEFAULT_SIZE = 10
+const DEFAULT_SIZE = 15
 
 let currentPenColor = DEFAULT_PEN_COLOR
 let currentBackgroundColor = DEFAULT_BACKGROUND_COLOR
@@ -10,18 +10,23 @@ let currentMode = DEFAULT_MODE
 let currentShowGridLines = DEFAULT_SHOW_GRID_LINES
 let currentSize = DEFAULT_SIZE
 
-function setColor(newColor) {
-    currentPenColor = newColor
+function setPenColor(newPenColor) {
+    currentPenColor = newPenColor
 }
 
-// function setMode(newMode) {
-//     showPressedButton(newMode)
-//     currentMode = newMode
-// }
+function setBackgroundColor(newBackgroundColor) {
+    currentBackgroundColor = newBackgroundColor
+}
+
+function setMode(newMode) {
+    showPressedButton(newMode)
+    currentMode = newMode
+}
 
 function setSize(newSize) {
     currentSize = newSize
 }
+
 
 const grid = document.getElementById("grid")
 function setupGrid(rows, columns) {

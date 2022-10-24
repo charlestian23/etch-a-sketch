@@ -15,7 +15,7 @@
         <header class="header">
             <div class="spacer"></div>
             <h1 class="title">Etch a Sketch</h1>
-            <i class="material-icons" style="font-size:100px;">brush</i>
+            <i class="material-icons" style="font-size:90px;">brush</i>
         </header>
         
         <main class="main">
@@ -24,16 +24,17 @@
                     <input id="brushColorPicker" type="color" value="#000000"/>
                     <div class="color_label">Brush Color</div>
                 </div>
+                <button id="brushButton">Regular Brush</button>
+                <button id="rainbowButton">Rainbow Brush</button>
+                <button id="eraserButton" style="margin-bottom: 1em;">Eraser</button>
                 <div class="color_controls">
                     <input id="backgroundColorPicker" type="color" value="#FFFFFF"/>
                     <div class="color_label">Background Color</div>
                 </div>
-                <button id="colorButton">Rainbow Pen</button>
-                <button id="eraserButton">Eraser</button>
                 <button id="clearButton">Clear</button>
                 <div class="size_controls">
-                    <input id="sizeSlider" max="64" min="1" type="range" value="23"/>
-                    <div class="size_value" id="sizeValue">23x23</div>
+                    <input id="sizeSlider" max="70" min="1" type="range" value="15"/>
+                    <div class="size_value" id="sizeValue">15 &times 15</div>
                 </div>
             </div>
             <div class="grid" id="grid"></div>
