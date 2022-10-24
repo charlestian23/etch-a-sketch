@@ -1,6 +1,12 @@
 .header {
-    white-space: nowrap;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.spacer {
+    height: 100px;
+    width: 100px;
 }
 
 .title, .material-icons {
@@ -13,9 +19,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 60px;
     font-family: Fredoka One;
     font-size: 20px;
+    margin-bottom: 3em;
 }
 
 .controls, .size_controls, .color_controls  {
@@ -28,7 +34,7 @@
 }
 
 .controls {
-    margin: 3em;
+    margin-right: 3em;
 }
 
 input[type='color'] {
