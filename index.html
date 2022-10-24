@@ -14,8 +14,23 @@
     <body>
         <header class="header">
             <h1 class="title">Etch a Sketch</h1>
-            <i , class="material-icons" style="font-size:100px;">brush</i>
+            <i class="material-icons" style="font-size:100px;">brush</i>
         </header>
+        
+        <main class="main">
+            <div class="controls">
+                <input id="penColorPicker" type="color" value="#000000"/>
+                <input id="backgroundColorPicker" type="color" value="#FFFFFF"/>
+                <button id="colorButton">Rainbow Pen</button>
+                <button id="eraserButton">Eraser</button>
+                <button id="clearButton">Clear</button>
+                <div class="size_controls">
+                    <div class="size_value" id="sizeValue">23x23</div>
+                    <input id="sizeSlider" max="64" min="1" type="range" value="23"/>
+                </div>
+            </div>
+            <div class="grid" id="grid"></div>
+        </main>
         
         <footer class="footer">
             <div class="copyright">
@@ -26,5 +41,6 @@
                 Charles Tian
             </div>
         </footer>
+        <script src="script.js"></script>
     </body>
 </html>
