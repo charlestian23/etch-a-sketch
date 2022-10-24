@@ -33,7 +33,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    width: 200px;
+    width: 230px;
 }
 
 .controls {
@@ -66,11 +66,10 @@ button.active {
     display: grid;
     width: 600px;
     height: 600px;
-    border: 0.1rem solid black;
 }
 
 .square {
-    border: 0.1rem solid black;
+    margin: 0 -0.1rem -0.1rem 0;
 }
 
 .footer {
