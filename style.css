@@ -8,3 +8,14 @@
     font-family: Fredoka One;
     display: inline-block;
 }
+
+.footer {
+    display: flex;
+    justify-content: center
+}
+
+.copyright {
+    font-size: 23px;
+    font-family: Fredoka One;
+    display: inline-block;
+}
