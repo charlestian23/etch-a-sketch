@@ -1,6 +1,6 @@
 const DEFAULT_PEN_COLOR = '#333333'
 const DEFAULT_BACKGROUND_COLOR = '#000000'
-const DEFAULT_MODE = 'color'
+const DEFAULT_MODE = "color"
 const DEFAULT_SHOW_GRID_LINES = true
 const DEFAULT_ROWS = 15
 const DEFAULT_COLUMNS = 15
@@ -20,7 +20,7 @@ function setBackgroundColor(newBackgroundColor) {
     currentBackgroundColor = newBackgroundColor
 }
 
-function setMode(newMode) {
+function setCurrentMode(newMode) {
     showPressedButton(newMode)
     currentMode = newMode
 }
@@ -38,7 +38,31 @@ function setCurrentColumns(newColumns) {
 }
 
 const brushColorPicker = document.getElementById("brushColorPicker")
-brushColorPicker.onInput = (e) => setPenColor(e.target.value)
+const brushColorButton = document.getElementById("brushButton")
+brushColorPicker.oninput = (e) => setPenColor(e.target.value)
+brushColorButton.onclick = () => setCurrentMode("color")
+
+const rainbowColorButton = document.getElementById("rainbowButton")
+rainbowColorButton.onclick = () => setCurrentMode("rainbow")
+
+const eraserButton = document.getElementById("eraserButton")
+eraserButton.onclick = () => setCurrentMode("eraser")
+
+function showPressedButton(newMode) {
+    if (currentMode == "color")
+        brushColorButton.classList.remove("active")
+    else if (currentMode == "rainbow")
+        rainbowColorButton.classList.remove("active")
+    else if (currentMode == "eraser")
+        eraserButton.classList.remove("active")
+
+    if (newMode == "color")
+        brushColorButton.classList.add("active")
+    else if (newMode == "rainbow")
+        rainbowColorButton.classList.add("active")
+    else if (newMode == "eraser")
+        eraserButton.classList.add("active")
+}
 
 const backgroundColorPicker = document.getElementById("backgroundColorPicker")
 backgroundColorPicker.onInput = (e) => setBackgroundColor(e.target.value)
@@ -154,3 +178,4 @@ function clearGrid() {
 }
 
 setupGrid(DEFAULT_ROWS, DEFAULT_COLUMNS);
+showPressedButton(DEFAULT_MODE)
