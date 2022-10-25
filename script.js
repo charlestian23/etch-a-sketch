@@ -18,6 +18,16 @@ function setPenColor(newPenColor) {
 
 function setBackgroundColor(newBackgroundColor) {
     currentBackgroundColor = newBackgroundColor
+    fillBackgroundColor()
+}
+
+function fillBackgroundColor() {
+    const squares = document.querySelectorAll(".square")
+    for (let i = 0; i < squares.length; i++)
+    {
+        if (!squares[i].dataset.inked)
+            squares[i].style.backgroundColor = currentBackgroundColor
+    }
 }
 
 function setCurrentMode(newMode) {
@@ -38,8 +48,9 @@ function setCurrentColumns(newColumns) {
 }
 
 const brushColorPicker = document.getElementById("brushColorPicker")
-const brushColorButton = document.getElementById("brushButton")
 brushColorPicker.oninput = (e) => setPenColor(e.target.value)
+
+const brushColorButton = document.getElementById("brushButton")
 brushColorButton.onclick = () => setCurrentMode("color")
 
 const rainbowColorButton = document.getElementById("rainbowButton")
@@ -49,18 +60,18 @@ const eraserButton = document.getElementById("eraserButton")
 eraserButton.onclick = () => setCurrentMode("eraser")
 
 function showPressedButton(newMode) {
-    if (currentMode == "color")
+    if (currentMode === "color")
         brushColorButton.classList.remove("active")
-    else if (currentMode == "rainbow")
+    else if (currentMode === "rainbow")
         rainbowColorButton.classList.remove("active")
-    else if (currentMode == "eraser")
+    else if (currentMode === "eraser")
         eraserButton.classList.remove("active")
 
-    if (newMode == "color")
+    if (newMode === "color")
         brushColorButton.classList.add("active")
-    else if (newMode == "rainbow")
+    else if (newMode === "rainbow")
         rainbowColorButton.classList.add("active")
-    else if (newMode == "eraser")
+    else if (newMode === "eraser")
         eraserButton.classList.add("active")
 }
 
@@ -68,7 +79,7 @@ const clearButton = document.getElementById("clearButton")
 clearButton.onclick = () => reloadGrid()
 
 const backgroundColorPicker = document.getElementById("backgroundColorPicker")
-backgroundColorPicker.onInput = (e) => setBackgroundColor(e.target.value)
+backgroundColorPicker.oninput = (e) => setBackgroundColor(e.target.value)
 
 const gridLinesButton = document.getElementById("gridLinesButton")
 gridLinesButton.onclick = () => toggleGridLines()
@@ -78,7 +89,7 @@ function toggleGridLines() {
 }
 
 function setGridLines() {
-    let squares = document.querySelectorAll(".square")
+    const squares = document.querySelectorAll(".square")
     for (let i = 0; i < squares.length; i++) {
         if (currentShowGridLines) {
             squares[i].style.borderTop = "0.1rem solid black"
@@ -122,23 +133,23 @@ let mouseDown = false
 document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
 function changeColor(e) {
-    if (e.type == "mouseover" && !mouseDown)
+    if (e.type === "mouseover" && !mouseDown)
         return
-    if (currentMode == "color") {
+    if (currentMode === "color") {
         e.target.style.backgroundColor = currentBrushColor
-        // e.target.setAttribute("data-inked", "true")
+        e.target.setAttribute("data-inked", "true")
     }
-    else if (currentMode == "rainbow") {
+    else if (currentMode === "rainbow") {
         const randomRed = Math.floor(Math.random() * 256)
         const randomGreen = Math.floor(Math.random() * 256)
         const randomBlue = Math.floor(Math.random() * 256)
         e.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`
-        // e.target.setAttribute("data-inked", "true")
+        e.target.setAttribute("data-inked", "true")
     }
-    else if (currentMode == "eraser")
+    else if (currentMode === "eraser")
     {
         e.target.style.backgroundColor = currentBackgroundColor
-        // e.target.removeAttribute("data-inked")
+        e.target.removeAttribute("data-inked")
     }
 }
 
@@ -171,7 +182,7 @@ function updateColumnsValue(newColumns) {
 
 function resizeSquares() {
     const grid = document.getElementById("grid")
-    if (currentRows == currentColumns)
+    if (currentRows === currentColumns)
     {
         grid.style.width = "600px"
         grid.style.height = "600px"
@@ -194,6 +205,7 @@ function reloadGrid() {
     deleteGrid()
     setupGrid(currentRows, currentColumns)
     resizeSquares()
+    fillBackgroundColor()
 }
 
 function deleteGrid() {
