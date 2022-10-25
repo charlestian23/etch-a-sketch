@@ -22,9 +22,9 @@
             <div class="controls">
                 <div class="color_controls">
                     <input id="brushColorPicker" type="color" value="#000000"/>
-                    <div class="color_label">Brush Color</div>
+                    <div class="color_label">Solid Brush Color</div>
                 </div>
-                <button id="brushButton">Regular Brush</button>
+                <button id="brushButton">Solid Color Brush</button>
                 <button id="rainbowButton">Rainbow Brush</button>
                 <button id="eraserButton" style="margin-bottom: 1em;">Eraser</button>
                 <div class="color_controls">
@@ -34,9 +34,12 @@
                 <button id="gridLinesButton">Toggle Grid Lines</button>
                 <button id="clearButton">Clear</button>
                 <div class="size_controls">
-                    <input id="sizeSlider" max="70" min="1" type="range" value="15"/>
-                    <div class="size_value" id="sizeValue">15 &times 15</div>
+                    <div class="size_value" id="rowValue">Rows:</div>
+                    <input id="rowSlider" max="70" min="1" type="range" value="15"/>
+                    <div class="size_value" id="columnValue">Columns:</div>
+                    <input id="columnSlider" max="70" min="1" type="range" value="15"/>
                 </div>
+                <div class="size_value" id="sizeValue">15 &times 15</div>
             </div>
             <div class="grid" id="grid"></div>
         </main>

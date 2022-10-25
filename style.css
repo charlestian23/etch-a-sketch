@@ -24,7 +24,7 @@
     font-family: Fredoka One;
     font-size: 20px;
     margin-top: 1.5em;
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
 }
 
 .controls, .size_controls, .color_controls  {
@@ -38,6 +38,22 @@
 
 .controls {
     margin-right: 3em;
+}
+
+.size_controls {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.size_value {
+    width: 33%
+}
+
+.size_value, .rowSlider, .columnSlider {
+    flex: 1;
 }
 
 input[type='color'] {
@@ -58,10 +74,6 @@ button.active {
     color: #ededed
 }
 
-#sizeSlider {
-    width: 100%;
-}
-
 .grid {
     display: grid;
     width: 600px;
@@ -70,11 +82,11 @@ button.active {
 
 .footer {
     display: flex;
-    justify-content: center
+    justify-content: center;
 }
 
 .copyright {
-    font-size: 23px;
+    font-size: 15px;
     font-family: Fredoka One;
     display: inline-block;
 }

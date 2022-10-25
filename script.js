@@ -25,15 +25,15 @@ function setMode(newMode) {
     currentMode = newMode
 }
 
-function setShowGridLines(newShowGridLines) {
+function setCurrentShowGridLines(newShowGridLines) {
     currentShowGridLines = newShowGridLines
 }
 
-function setRows(newRows) {
+function setCurrentRows(newRows) {
     currentRows = newRows
 }
 
-function setColumns(newColumns) {
+function setCurrentColumns(newColumns) {
     currentColumns = newColumns
 }
 
@@ -74,7 +74,6 @@ function setGridLines() {
     }
 }
 
-
 const grid = document.getElementById("grid")
 function setupGrid(rows, columns) {
     grid.style.gridTemplateRows = `repeat(${rows}, 1fr)`
@@ -91,6 +90,42 @@ function setupGrid(rows, columns) {
     }
 
     setGridLines()
+}
+
+const rowSlider = document.getElementById("rowSlider")
+rowSlider.onmousemove = (e) => updateRowsValue(e.target.value)
+rowSlider.onchange = (e) => changeNumberOfRows(e.target.value)
+function changeNumberOfRows(newRows) {
+    setCurrentRows(newRows)
+    updateRowsValue(newRows)
+    reloadGrid()
+}
+
+const columnSlider = document.getElementById("columnSlider")
+columnSlider.onmousemove = (e) => updateColumnsValue(e.target.value)
+columnSlider.onchange = (e) => changeNumberOfColumns(e.target.value)
+function changeNumberOfColumns(newColumns) {
+    setCurrentColumns(newColumns)
+    updateColumnsValue(newColumns)
+    reloadGrid()
+}
+
+const sizeValue = document.getElementById("sizeValue")
+function updateRowsValue(newRows) {
+    sizeValue.innerHTML = `${newRows} &times ${currentColumns}`
+}
+
+function updateColumnsValue(newColumns) {
+    sizeValue.innerHTML = `${currentRows} &times ${newColumns}`
+}
+
+function reloadGrid() {
+    clearGrid()
+    setupGrid(currentRows, currentColumns)
+}
+
+function clearGrid() {
+    grid.innerHTML = ""
 }
 
 setupGrid(DEFAULT_ROWS, DEFAULT_COLUMNS);
