@@ -53,7 +53,6 @@ function toggleGridLines() {
 function setGridLines() {
     let squares = document.querySelectorAll(".square")
     for (let i = 0; i < squares.length; i++) {
-        console.log(squares)
         if (currentShowGridLines) {
             squares[i].style.borderTop = "0.1rem solid black"
             squares[i].style.borderRight = "0.1rem solid black"
@@ -96,7 +95,7 @@ const rowSlider = document.getElementById("rowSlider")
 rowSlider.onmousemove = (e) => updateRowsValue(e.target.value)
 rowSlider.onchange = (e) => changeNumberOfRows(e.target.value)
 function changeNumberOfRows(newRows) {
-    setCurrentRows(newRows)
+    setCurrentRows(parseInt(newRows))
     updateRowsValue(newRows)
     reloadGrid()
 }
@@ -105,7 +104,7 @@ const columnSlider = document.getElementById("columnSlider")
 columnSlider.onmousemove = (e) => updateColumnsValue(e.target.value)
 columnSlider.onchange = (e) => changeNumberOfColumns(e.target.value)
 function changeNumberOfColumns(newColumns) {
-    setCurrentColumns(newColumns)
+    setCurrentColumns(parseInt(newColumns))
     updateColumnsValue(newColumns)
     reloadGrid()
 }
@@ -119,9 +118,35 @@ function updateColumnsValue(newColumns) {
     sizeValue.innerHTML = `${currentRows} &times ${newColumns}`
 }
 
+function resizeSquares() {
+    const grid = document.getElementById("grid")
+    if (currentRows == currentColumns)
+    {
+        grid.style.width = "600px"
+        grid.style.height = "600px"
+    }
+    else if (currentRows > currentColumns)
+    {
+        grid.style.height = "600px"
+        const newWidth = 600 / currentRows * currentColumns
+        grid.style.width = newWidth.toString() + "px"
+    }
+    else if (currentColumns > currentRows)
+    {
+        grid.style.width = "600px"
+        const newHeight = 600 / currentColumns * currentRows
+        grid.style.height = newHeight.toString() + "px"
+    }
+    else
+    {
+        console.log("here")
+    }
+}
+
 function reloadGrid() {
     clearGrid()
     setupGrid(currentRows, currentColumns)
+    resizeSquares()
 }
 
 function clearGrid() {
