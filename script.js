@@ -46,7 +46,7 @@ backgroundColorPicker.onInput = (e) => setBackgroundColor(e.target.value)
 const gridLinesButton = document.getElementById("gridLinesButton")
 gridLinesButton.onclick = () => toggleGridLines()
 function toggleGridLines() {
-    currentShowGridLines = !currentShowGridLines
+    setCurrentShowGridLines(!currentShowGridLines)
     setGridLines()
 }
 
