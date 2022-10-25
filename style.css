@@ -1,6 +1,13 @@
-button, input {
+input {
     cursor: pointer;
 }
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
 
 .header {
     display: flex;
