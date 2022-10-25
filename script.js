@@ -24,10 +24,8 @@ function setBackgroundColor(newBackgroundColor) {
 function fillBackgroundColor() {
     const squares = document.querySelectorAll(".square")
     for (let i = 0; i < squares.length; i++)
-    {
         if (!squares[i].dataset.inked)
             squares[i].style.backgroundColor = currentBackgroundColor
-    }
 }
 
 function setCurrentMode(newMode) {
