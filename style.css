@@ -74,6 +74,14 @@ button.active {
     color: #ededed
 }
 
+.grid_wrapper {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 600px;
+    height: 600px;
+}
+
 .grid {
     display: grid;
     width: 600px;
