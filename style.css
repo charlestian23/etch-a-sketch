@@ -74,6 +74,10 @@ button.active {
     color: #ededed
 }
 
+button:hover, input[type='color']:hover {
+    transform: scale(1.05);
+}
+
 .grid_wrapper {
     display: grid;
     align-items: center;
@@ -86,10 +90,6 @@ button.active {
     display: grid;
     width: 600px;
     height: 600px;
-}
-
-.square {
-    margin: 0 -0.1rem -0.1rem 0;
 }
 
 .footer {

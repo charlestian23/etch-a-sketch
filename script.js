@@ -1,11 +1,11 @@
-const DEFAULT_PEN_COLOR = '#333333'
-const DEFAULT_BACKGROUND_COLOR = '#000000'
+const DEFAULT_BRUSH_COLOR = '#000000'
+const DEFAULT_BACKGROUND_COLOR = '#FFFFFF'
 const DEFAULT_MODE = "color"
 const DEFAULT_SHOW_GRID_LINES = true
 const DEFAULT_ROWS = 15
 const DEFAULT_COLUMNS = 15
 
-let currentPenColor = DEFAULT_PEN_COLOR
+let currentBrushColor = DEFAULT_BRUSH_COLOR
 let currentBackgroundColor = DEFAULT_BACKGROUND_COLOR
 let currentMode = DEFAULT_MODE
 let currentShowGridLines = DEFAULT_SHOW_GRID_LINES
@@ -13,7 +13,7 @@ let currentRows = DEFAULT_ROWS
 let currentColumns = DEFAULT_COLUMNS
 
 function setPenColor(newPenColor) {
-    currentPenColor = newPenColor
+    currentBrushColor = newPenColor
 }
 
 function setBackgroundColor(newBackgroundColor) {
@@ -64,6 +64,9 @@ function showPressedButton(newMode) {
         eraserButton.classList.add("active")
 }
 
+const clearButton = document.getElementById("clearButton")
+clearButton.onclick = () => reloadGrid()
+
 const backgroundColorPicker = document.getElementById("backgroundColorPicker")
 backgroundColorPicker.onInput = (e) => setBackgroundColor(e.target.value)
 
@@ -106,13 +109,37 @@ function setupGrid(rows, columns) {
         for (let j = 0; j < columns; j++) {
             const square = document.createElement("div")
             square.classList.add("square")
-            // square.addEventListener("mouseover", changeColor);
-            // square.addEventListener("mousedown", changeColor)
+            square.addEventListener("mouseover", changeColor)
+            square.addEventListener("mousedown", changeColor)
             grid.appendChild(square)
         }
     }
 
     setGridLines()
+}
+
+let mouseDown = false
+document.body.onmousedown = () => (mouseDown = true)
+document.body.onmouseup = () => (mouseDown = false)
+function changeColor(e) {
+    if (e.type == "mouseover" && !mouseDown)
+        return
+    if (currentMode == "color") {
+        e.target.style.backgroundColor = currentBrushColor
+        // e.target.setAttribute("data-inked", "true")
+    }
+    else if (currentMode == "rainbow") {
+        const randomRed = Math.floor(Math.random() * 256)
+        const randomGreen = Math.floor(Math.random() * 256)
+        const randomBlue = Math.floor(Math.random() * 256)
+        e.target.style.backgroundColor = `rgb(${randomRed}, ${randomGreen}, ${randomBlue})`
+        // e.target.setAttribute("data-inked", "true")
+    }
+    else if (currentMode == "eraser")
+    {
+        e.target.style.backgroundColor = currentBackgroundColor
+        // e.target.removeAttribute("data-inked")
+    }
 }
 
 const rowSlider = document.getElementById("rowSlider")
@@ -161,19 +188,15 @@ function resizeSquares() {
         const newHeight = 600 / currentColumns * currentRows
         grid.style.height = newHeight.toString() + "px"
     }
-    else
-    {
-        console.log("here")
-    }
 }
 
 function reloadGrid() {
-    clearGrid()
+    deleteGrid()
     setupGrid(currentRows, currentColumns)
     resizeSquares()
 }
 
-function clearGrid() {
+function deleteGrid() {
     grid.innerHTML = ""
 }
 
