@@ -38,7 +38,7 @@ input {
     margin-bottom: 1em;
 }
 
-.controls, .size_controls, .color_controls  {
+.controls, .size_controls, .color_controls {
     display: flex;
     flex-direction: column;
     align-items: center;
