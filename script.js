@@ -77,7 +77,9 @@ const clearButton = document.getElementById("clearButton")
 clearButton.onclick = () => reloadGrid()
 
 const backgroundColorPicker = document.getElementById("backgroundColorPicker")
-backgroundColorPicker.oninput = (e) => setBackgroundColor(e.target.value)
+setInterval(() => {
+    setBackgroundColor(backgroundColorPicker.value)
+}, 100)
 
 const gridLinesButton = document.getElementById("gridLinesButton")
 gridLinesButton.onclick = () => toggleGridLines()
@@ -128,8 +130,21 @@ function setupGrid(rows, columns) {
 }
 
 let mouseDown = false
-document.body.onmousedown = () => (mouseDown = true)
 document.body.onmouseup = () => (mouseDown = false)
+
+document.body.onmousedown = () => (mouseDownOperations())
+function mouseDownOperations() {
+    mouseDown = true
+    clearSelection()
+}
+
+function clearSelection() {
+    if (window.getSelection())
+        window.getSelection().removeAllRanges()
+    else if (document.getSelection())
+        document.getSelection().empty()
+}
+
 function changeColor(e) {
     if (e.type === "mouseover" && !mouseDown)
         return
