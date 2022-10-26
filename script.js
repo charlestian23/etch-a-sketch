@@ -130,20 +130,14 @@ function setupGrid(rows, columns) {
 }
 
 let mouseDown = false
-document.body.onmouseup = () => (mouseDown = false)
-
-document.body.onmousedown = () => (mouseDownOperations())
-function mouseDownOperations() {
+document.body.onmousedown = () => {
     mouseDown = true
-    clearSelection()
-}
-
-function clearSelection() {
     if (window.getSelection())
         window.getSelection().removeAllRanges()
     else if (document.getSelection())
         document.getSelection().empty()
 }
+document.body.onmouseup = () => (mouseDown = false)
 
 function changeColor(e) {
     if (e.type === "mouseover" && !mouseDown)
